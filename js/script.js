@@ -1,50 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
     initGallerySlider();
     initAccordion();
-    initSectionReveal();
     initKakaoMap();
 });
-
-/* =========================
-   섹션 자연스러운 등장 효과
-   - 섹션 전체를 움직이지 않음
-   - 내용물만 부드럽게 등장
-   - 스크롤 구조 깨지지 않음
-========================= */
-function initSectionReveal() {
-    const sections = document.querySelectorAll(".page-section");
-
-    if (!sections.length) {
-        return;
-    }
-
-    sections.forEach(function (section, index) {
-        if (index === 0) {
-            section.classList.add("section-visible");
-        }
-    });
-
-    const observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("section-visible");
-            }
-        });
-    }, {
-        threshold: 0.22,
-        rootMargin: "0px 0px -12% 0px"
-    });
-
-    sections.forEach(function (section) {
-        observer.observe(section);
-    });
-}
 
 /* =========================
    갤러리 슬라이드
    - 3초 간격 자동 전환
    - 흐려지면서 자연스럽게 전환
-   - 하단 화살표 수동 이동
+   - 하단 흰색 화살표 수동 이동
    - 하단 점 버튼 이동
 ========================= */
 function initGallerySlider() {
