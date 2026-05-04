@@ -3,80 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>chiwoogood</title>
-
-    <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #eef2ff, #f8fafc);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .wrap {
-            width: 90%;
-            max-width: 720px;
-            padding: 48px;
-            border-radius: 28px;
-            background: white;
-            box-shadow: 0 24px 80px rgba(15, 23, 42, 0.12);
-            text-align: center;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 8px 14px;
-            border-radius: 999px;
-            background: #eef2ff;
-            color: #4338ca;
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 42px;
-            color: #111827;
-        }
-
-        p {
-            margin-top: 16px;
-            font-size: 18px;
-            line-height: 1.6;
-            color: #4b5563;
-        }
-
-        a {
-            display: inline-block;
-            margin-top: 28px;
-            padding: 14px 22px;
-            border-radius: 14px;
-            background: #111827;
-            color: white;
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        a:hover {
-            background: #374151;
-        }
-    </style>
+    <title>Wedding Invitation</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="wrap">
-        <div class="badge">GitHub Pages</div>
-        <h1>정적 페이지 테스트 성공</h1>
+
+    <section class="main-visual">
+        <img src="images/main.jpg" alt="메인 웨딩 사진">
+        <div class="main-text">
+            <p>우리 결혼합니다</p>
+            <h1>신랑 · 신부</h1>
+            <span>2026.00.00 SAT</span>
+        </div>
+    </section>
+
+    <section class="intro section">
+        <h2>초대합니다</h2>
         <p>
-            이 페이지는 GitHub Pages에서 호스팅되는 정적 웹페이지입니다.<br>
-            HTML, CSS, JavaScript만으로 구성할 수 있습니다.
+            서로의 인생에 가장 따뜻한 동행이 되어<br>
+            새로운 시작을 함께하려 합니다.<br>
+            소중한 걸음으로 축복해 주세요.
         </p>
-        <a href="https://github.com/chiwoogood/chiwoogood.github.io">
-            GitHub Repository
-        </a>
-    </div>
+    </section>
+
+    <section class="gallery section">
+        <h2>Gallery</h2>
+        <div class="gallery-grid">
+            <img src="images/gallery1.jpg" alt="갤러리 사진 1">
+            <img src="images/gallery2.jpg" alt="갤러리 사진 2">
+            <img src="images/gallery3.jpg" alt="갤러리 사진 3">
+            <img src="images/gallery4.jpg" alt="갤러리 사진 4">
+        </div>
+    </section>
+
+    <section class="location section">
+        <h2>오시는 길</h2>
+        <p>서울특별시 ○○구 ○○로 00, 웨딩홀</p>
+
+        <div id="map"></div>
+    </section>
+
+    <section class="account section">
+        <h2>마음 전하실 곳</h2>
+
+        <div class="accordion">
+            <button class="accordion-btn">신랑측 계좌 보기</button>
+            <div class="accordion-content">
+                <p>신랑 아버지: 국민은행 000000-00-000000</p>
+                <p>신랑 어머니: 신한은행 000-000-000000</p>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-btn">신부측 계좌 보기</button>
+            <div class="accordion-content">
+                <p>신부 아버지: 국민은행 000000-00-000000</p>
+                <p>신부 어머니: 신한은행 000-000-000000</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
 </body>
 </html>
