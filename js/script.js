@@ -1,8 +1,47 @@
 document.addEventListener("DOMContentLoaded", function () {
     initGallerySlider();
     initAccordion();
+    initFadeInSection();
     initKakaoMap();
 });
+
+/* =========================
+   섹션 자연스러운 등장 효과
+   - 섹션 전체를 움직이지 않음
+   - 내용만 opacity로 자연스럽게 표시
+   - 기존 레이아웃 구조 안 깨짐
+========================= */
+function initFadeInSection() {
+    const targets = document.querySelectorAll(
+        ".main-content, .intro-content, .gallery-slider, .location-content, .account-content"
+    );
+
+    if (!targets.length) {
+        return;
+    }
+
+    targets.forEach(function (target, index) {
+        target.classList.add("fade-in-target");
+
+        if (index === 0) {
+            target.classList.add("visible");
+        }
+    });
+
+    const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, {
+        threshold: 0.25
+    });
+
+    targets.forEach(function (target) {
+        observer.observe(target);
+    });
+}
 
 /* =========================
    갤러리 슬라이드
