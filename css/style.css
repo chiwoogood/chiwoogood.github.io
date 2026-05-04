@@ -7,13 +7,13 @@
     --text-color: #6a5450;
     --line-color: rgba(214, 170, 182, 0.32);
     --point-color: #d9a7b4;
+    --soft-white: rgba(255, 255, 255, 0.32);
 }
 
 html {
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
-    scroll-snap-type: y proximity;
 }
 
 body {
@@ -22,11 +22,13 @@ body {
     background: var(--bg-color);
     font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
     color: var(--text-color);
+    overflow-x: hidden;
 }
 
 .mobile-wrap {
     width: 100%;
     max-width: 430px;
+    min-height: 100vh;
     margin: 0 auto;
     background: var(--bg-color);
     overflow-x: hidden;
@@ -35,6 +37,7 @@ body {
 /* =========================
    전체 섹션 공통
 ========================= */
+
 .page-section {
     position: relative;
     width: 100%;
@@ -42,21 +45,6 @@ body {
     background: var(--bg-color);
     color: var(--text-color);
     overflow: hidden;
-    scroll-snap-align: start;
-    transition:
-        opacity 0.75s ease,
-        transform 0.75s ease;
-}
-
-/* JS 섹션 전환 효과 */
-.section-fade {
-    opacity: 0;
-    transform: translateY(22px);
-}
-
-.section-fade.section-visible {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 /* 모든 섹션 배경 / 글씨색 통일 */
@@ -109,7 +97,7 @@ div,
     text-shadow: none;
 }
 
-/* 하얀 카드 / 패널 / 그림자 완전 제거 */
+/* 하얀 카드 / 패널 / 그림자 제거 */
 .main-content,
 .intro-content,
 .location-content,
@@ -123,7 +111,7 @@ div,
     border-radius: 0;
 }
 
-/* 어두운 요소 제거 */
+/* 혹시 기존에 남아있는 어두운 오버레이 제거 */
 .dark-overlay,
 .dark-overlay.stronger,
 .gallery-dim,
@@ -135,8 +123,34 @@ div,
 }
 
 /* =========================
+   섹션 진입 애니메이션
+   - 섹션 전체가 아니라 내용만 움직임
+   - 그래서 화면 구조가 깨지지 않음
+========================= */
+
+.reveal-content {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+        opacity 0.85s ease,
+        transform 0.85s ease;
+}
+
+.page-section.section-visible .reveal-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 첫 화면은 바로 보이도록 */
+.page-section:first-child .reveal-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================
    메인
 ========================= */
+
 .main-section {
     display: flex;
     flex-direction: column;
@@ -189,6 +203,7 @@ div,
 /* =========================
    소갯말
 ========================= */
+
 .intro-section {
     display: flex;
     align-items: center;
@@ -217,6 +232,7 @@ div,
 /* =========================
    갤러리
 ========================= */
+
 .gallery-section {
     display: flex;
     align-items: center;
@@ -327,6 +343,7 @@ div,
 /* =========================
    오시는 길
 ========================= */
+
 .location-section {
     display: flex;
     align-items: center;
@@ -387,6 +404,7 @@ div,
 /* =========================
    계좌
 ========================= */
+
 .account-section {
     display: flex;
     align-items: center;
@@ -476,6 +494,7 @@ div,
 /* =========================
    작은 모바일
 ========================= */
+
 @media (max-width: 360px) {
     .main-section {
         padding: 72px 18px 64px;
