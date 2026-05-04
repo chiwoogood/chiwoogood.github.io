@@ -120,6 +120,20 @@ div,
 }
 
 /* =========================
+   섹션 전환 효과
+   - 섹션 전체를 움직이지 않음
+   - 내용만 자연스럽게 나타남
+========================= */
+.fade-in-target {
+    opacity: 0;
+    transition: opacity 0.9s ease;
+}
+
+.fade-in-target.visible {
+    opacity: 1;
+}
+
+/* =========================
    메인
 ========================= */
 .main-section {
@@ -310,6 +324,7 @@ div,
     border-radius: 50%;
     background: rgba(106, 84, 80, 0.28);
     box-shadow: none;
+    cursor: pointer;
 }
 
 .gallery-dot.active {
