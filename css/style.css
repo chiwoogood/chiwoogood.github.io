@@ -6,7 +6,39 @@ html {
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
-    scroll-snap-type: y proximity;
+    scroll-snap-type: y mandatory;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #111;
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    color: #2f2f2f;
+    overscroll-behavior-y: none;
+}
+
+.mobile-wrap {
+    width: 100%;
+    max-width: 430px;
+    height: 100svh;
+    margin: 0 auto;
+    background: #fffaf7;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.page-section {
+    position: relative;
+    width: 100%;
+    min-height: 100svh;
+    height: 100svh;
+    overflow: hidden;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 body {
