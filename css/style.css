@@ -39,30 +39,6 @@ body {
     scroll-snap-stop: always;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    background: #111;
-    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-    color: #2f2f2f;
-}
-
-.mobile-wrap {
-    width: 100%;
-    max-width: 430px;
-    margin: 0 auto;
-    background: #fffaf7;
-    overflow: hidden;
-}
-
-.page-section {
-    position: relative;
-    width: 100%;
-    min-height: 100svh;
-    overflow: hidden;
-    scroll-snap-align: start;
-}
-
 .section-line::before {
     content: "";
     position: absolute;
