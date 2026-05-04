@@ -7,13 +7,13 @@
     --text-color: #6a5450;
     --line-color: rgba(214, 170, 182, 0.32);
     --point-color: #d9a7b4;
-    --soft-white: rgba(255, 255, 255, 0.32);
 }
 
 html {
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
 }
 
 body {
@@ -22,13 +22,11 @@ body {
     background: var(--bg-color);
     font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
     color: var(--text-color);
-    overflow-x: hidden;
 }
 
 .mobile-wrap {
     width: 100%;
     max-width: 430px;
-    min-height: 100vh;
     margin: 0 auto;
     background: var(--bg-color);
     overflow-x: hidden;
@@ -37,17 +35,18 @@ body {
 /* =========================
    전체 섹션 공통
 ========================= */
-
 .page-section {
     position: relative;
     width: 100%;
     min-height: 100svh;
     background: var(--bg-color);
     color: var(--text-color);
-    overflow: hidden;
+    overflow: visible;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
 }
 
-/* 모든 섹션 배경 / 글씨색 통일 */
+/* 모든 섹션 배경 / 글씨색 완전 통일 */
 .main-section,
 .intro-section,
 .gallery-section,
@@ -57,7 +56,19 @@ body {
     color: var(--text-color);
 }
 
-/* 섹션 제목 */
+/* 얇은 구분선 */
+.section-line::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 24px;
+    right: 24px;
+    height: 1px;
+    background: var(--line-color);
+    z-index: 20;
+}
+
+/* 모든 섹션 부제목 동일 */
 .section-title {
     position: absolute;
     top: 22px;
@@ -71,7 +82,7 @@ body {
     text-shadow: none;
 }
 
-/* 모든 텍스트 색상 통일 */
+/* 모든 텍스트 색상 강제 통일 */
 h1,
 h2,
 p,
@@ -97,21 +108,7 @@ div,
     text-shadow: none;
 }
 
-/* 하얀 카드 / 패널 / 그림자 제거 */
-.main-content,
-.intro-content,
-.location-content,
-.account-content,
-.gallery-slider,
-.accordion,
-.location-info {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    border-radius: 0;
-}
-
-/* 혹시 기존에 남아있는 어두운 오버레이 제거 */
+/* 어두운 요소 / 카드 요소 전부 제거 */
 .dark-overlay,
 .dark-overlay.stronger,
 .gallery-dim,
@@ -123,34 +120,8 @@ div,
 }
 
 /* =========================
-   섹션 진입 애니메이션
-   - 섹션 전체가 아니라 내용만 움직임
-   - 그래서 화면 구조가 깨지지 않음
-========================= */
-
-.reveal-content {
-    opacity: 0;
-    transform: translateY(24px);
-    transition:
-        opacity 0.85s ease,
-        transform 0.85s ease;
-}
-
-.page-section.section-visible .reveal-content {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* 첫 화면은 바로 보이도록 */
-.page-section:first-child .reveal-content {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* =========================
    메인
 ========================= */
-
 .main-section {
     display: flex;
     flex-direction: column;
@@ -173,6 +144,9 @@ div,
     width: 100%;
     padding: 28px 0 0;
     text-align: center;
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
 .main-label {
@@ -203,7 +177,6 @@ div,
 /* =========================
    소갯말
 ========================= */
-
 .intro-section {
     display: flex;
     align-items: center;
@@ -214,6 +187,9 @@ div,
 .intro-content {
     width: 100%;
     text-align: center;
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
 .intro-content h2 {
@@ -232,7 +208,6 @@ div,
 /* =========================
    갤러리
 ========================= */
-
 .gallery-section {
     display: flex;
     align-items: center;
@@ -246,6 +221,10 @@ div,
     height: 72svh;
     max-height: 620px;
     overflow: hidden;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
 }
 
 .gallery-slide {
@@ -331,7 +310,6 @@ div,
     border-radius: 50%;
     background: rgba(106, 84, 80, 0.28);
     box-shadow: none;
-    cursor: pointer;
 }
 
 .gallery-dot.active {
@@ -343,7 +321,6 @@ div,
 /* =========================
    오시는 길
 ========================= */
-
 .location-section {
     display: flex;
     align-items: center;
@@ -354,6 +331,9 @@ div,
 .location-content {
     width: 100%;
     text-align: center;
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
 .location-content h2 {
@@ -373,7 +353,7 @@ div,
     width: 100%;
     height: 280px;
     border-radius: 0;
-    background: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.5);
     color: var(--text-color);
     display: flex;
     align-items: center;
@@ -386,6 +366,9 @@ div,
 .location-info {
     margin-top: 20px;
     padding: 0;
+    border-radius: 0;
+    background: transparent;
+    border: none;
     text-align: left;
 }
 
@@ -404,7 +387,6 @@ div,
 /* =========================
    계좌
 ========================= */
-
 .account-section {
     display: flex;
     align-items: center;
@@ -415,6 +397,9 @@ div,
 .account-content {
     width: 100%;
     text-align: center;
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
 .account-content h2 {
@@ -432,8 +417,13 @@ div,
 .accordion {
     margin: 14px 0;
     overflow: hidden;
+    background: transparent;
     border-top: 1px solid var(--line-color);
     border-bottom: 1px solid var(--line-color);
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 .accordion-button {
@@ -494,7 +484,6 @@ div,
 /* =========================
    작은 모바일
 ========================= */
-
 @media (max-width: 360px) {
     .main-section {
         padding: 72px 18px 64px;
