@@ -13,6 +13,7 @@ html {
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
+    background: #ffffff;
 }
 
 body {
@@ -132,8 +133,6 @@ div,
 
 /* =========================
    섹션 이지인 효과
-   - 섹션 전체가 아니라 내부 내용만 적용
-   - 위치 구조 안 깨짐
 ========================= */
 .ease-target {
     opacity: 0;
@@ -275,31 +274,38 @@ div,
     object-fit: cover;
 }
 
-/* 갤러리 화살표 */
+/* 갤러리 화살표: 흰색 문자만 남김 */
 .gallery-arrow {
     position: absolute;
     bottom: 48px;
     z-index: 10;
     width: 48px;
     height: 48px;
-    border: 1px solid rgba(106, 84, 80, 0.32);
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.72);
-    color: var(--text-color);
-    font-size: 38px;
-    font-weight: 200;
-    line-height: 38px;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: #ffffff;
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: none;
-    text-shadow: none;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.28);
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 .gallery-arrow:active {
     transform: scale(0.94);
-    background: rgba(255, 255, 255, 0.92);
+    background: transparent;
+}
+
+.gallery-arrow:focus {
+    outline: none;
 }
 
 .gallery-prev {
@@ -327,7 +333,7 @@ div,
     padding: 0;
     border: none;
     border-radius: 50%;
-    background: rgba(106, 84, 80, 0.28);
+    background: rgba(255, 255, 255, 0.55);
     box-shadow: none;
     cursor: pointer;
 }
@@ -335,7 +341,7 @@ div,
 .gallery-dot.active {
     width: 18px;
     border-radius: 999px;
-    background: var(--point-color);
+    background: #ffffff;
 }
 
 /* =========================
@@ -538,28 +544,17 @@ div,
     }
 
     .gallery-arrow {
-        position: absolute;
-        bottom: 48px;
-        z-index: 10;
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
+        font-size: 44px;
         border: none;
         border-radius: 0;
         background: transparent;
-        color: var(--text-color);
-        font-size: 46px;
-        font-weight: 200;
-        line-height: 1;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        color: #ffffff;
         box-shadow: none;
-        text-shadow: none;
     }
-    
+
     .gallery-arrow:active {
-    transform: scale(0.94);
-    background: transparent;
+        background: transparent;
     }
 }
