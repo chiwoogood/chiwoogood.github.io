@@ -32,6 +32,9 @@ body {
     overflow-x: hidden;
 }
 
+/* =========================
+   전체 섹션 공통
+========================= */
 .page-section {
     position: relative;
     width: 100%;
@@ -41,25 +44,22 @@ body {
     overflow: hidden;
     scroll-snap-align: start;
     transition:
-        opacity 0.9s ease,
-        transform 0.9s ease,
-        filter 0.9s ease;
+        opacity 0.75s ease,
+        transform 0.75s ease;
 }
 
-/* 섹션 진입 효과 */
+/* JS 섹션 전환 효과 */
 .section-fade {
-    opacity: 0.22;
-    transform: translateY(38px) scale(0.985);
-    filter: blur(3px);
+    opacity: 0;
+    transform: translateY(22px);
 }
 
 .section-fade.section-visible {
     opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
+    transform: translateY(0);
 }
 
-/* 모든 섹션 배경 통일 */
+/* 모든 섹션 배경 / 글씨색 통일 */
 .main-section,
 .intro-section,
 .gallery-section,
@@ -80,23 +80,10 @@ body {
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--text-color);
+    text-shadow: none;
 }
 
-/* 하얀 카드/패널/그림자 전부 제거 */
-.main-content,
-.intro-content,
-.location-content,
-.account-content,
-.gallery-slider,
-.accordion,
-.location-info {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    border-radius: 0;
-}
-
-/* 모든 텍스트 색 통일 */
+/* 모든 텍스트 색상 통일 */
 h1,
 h2,
 p,
@@ -120,4 +107,419 @@ div,
 .accordion-button {
     color: var(--text-color);
     text-shadow: none;
+}
+
+/* 하얀 카드 / 패널 / 그림자 완전 제거 */
+.main-content,
+.intro-content,
+.location-content,
+.account-content,
+.gallery-slider,
+.accordion,
+.location-info {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+/* 어두운 요소 제거 */
+.dark-overlay,
+.dark-overlay.stronger,
+.gallery-dim,
+.location-bg,
+.section-panel,
+.white-title,
+.dark-title {
+    display: none;
+}
+
+/* =========================
+   메인
+========================= */
+.main-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 78px 22px 72px;
+}
+
+.main-photo {
+    display: block;
+    width: 100%;
+    height: 58svh;
+    max-height: 560px;
+    object-fit: cover;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.main-content {
+    width: 100%;
+    padding: 28px 0 0;
+    text-align: center;
+}
+
+.main-label {
+    margin: 0 0 16px;
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+}
+
+.main-content h1 {
+    margin: 0;
+    font-size: 38px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+}
+
+.main-date {
+    margin: 18px 0 6px;
+    font-size: 15px;
+    letter-spacing: 0.15em;
+}
+
+.main-place {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* =========================
+   소갯말
+========================= */
+.intro-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 86px 28px 72px;
+}
+
+.intro-content {
+    width: 100%;
+    text-align: center;
+}
+
+.intro-content h2 {
+    margin: 0 0 32px;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 1.45;
+}
+
+.intro-content p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 2.15;
+}
+
+/* =========================
+   갤러리
+========================= */
+.gallery-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 78px 22px 72px;
+}
+
+.gallery-slider {
+    position: relative;
+    width: 100%;
+    height: 72svh;
+    max-height: 620px;
+    overflow: hidden;
+}
+
+.gallery-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: scale(1.018);
+    transition:
+        opacity 1.45s ease,
+        transform 2.4s ease;
+    will-change: opacity, transform;
+}
+
+.gallery-slide.active {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 3;
+}
+
+.gallery-slide.leaving {
+    opacity: 0;
+    transform: scale(1.01);
+    z-index: 2;
+}
+
+.gallery-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 갤러리 화살표 */
+.gallery-arrow {
+    position: absolute;
+    bottom: 48px;
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(106, 84, 80, 0.32);
+    border-radius: 50%;
+    background: rgba(255, 244, 247, 0.72);
+    color: var(--text-color);
+    font-size: 38px;
+    font-weight: 200;
+    line-height: 38px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.gallery-arrow:active {
+    transform: scale(0.94);
+    background: rgba(255, 244, 247, 0.92);
+}
+
+.gallery-prev {
+    left: calc(50% - 62px);
+}
+
+.gallery-next {
+    right: calc(50% - 62px);
+}
+
+.gallery-dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 24px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+}
+
+.gallery-dot {
+    width: 6px;
+    height: 6px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(106, 84, 80, 0.28);
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.gallery-dot.active {
+    width: 18px;
+    border-radius: 999px;
+    background: var(--point-color);
+}
+
+/* =========================
+   오시는 길
+========================= */
+.location-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 86px 22px 72px;
+}
+
+.location-content {
+    width: 100%;
+    text-align: center;
+}
+
+.location-content h2 {
+    margin: 0 0 14px;
+    font-size: 29px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+.location-address {
+    margin: 0 0 22px;
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+#map {
+    width: 100%;
+    height: 280px;
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0.35);
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    overflow: hidden;
+    box-shadow: none;
+}
+
+.location-info {
+    margin-top: 20px;
+    padding: 0;
+    text-align: left;
+}
+
+.location-info p {
+    margin: 6px 0;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.location-info strong {
+    display: inline-block;
+    min-width: 52px;
+    font-weight: 600;
+}
+
+/* =========================
+   계좌
+========================= */
+.account-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 86px 22px 72px;
+}
+
+.account-content {
+    width: 100%;
+    text-align: center;
+}
+
+.account-content h2 {
+    margin: 0 0 12px;
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.account-desc {
+    margin: 0 0 30px;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.accordion {
+    margin: 14px 0;
+    overflow: hidden;
+    border-top: 1px solid var(--line-color);
+    border-bottom: 1px solid var(--line-color);
+}
+
+.accordion-button {
+    width: 100%;
+    padding: 20px 0;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.accordion-button em {
+    font-style: normal;
+    font-size: 25px;
+    font-weight: 200;
+    transition: transform 0.25s ease;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    transition:
+        max-height 0.34s ease,
+        padding 0.34s ease;
+}
+
+.accordion.active .accordion-content {
+    max-height: 260px;
+    padding: 0 0 20px;
+}
+
+.accordion.active .accordion-button em {
+    transform: rotate(45deg);
+}
+
+.account-row {
+    padding: 15px 0;
+    text-align: left;
+    border-top: 1px solid var(--line-color);
+}
+
+.account-row p {
+    margin: 0 0 6px;
+    font-size: 13px;
+}
+
+.account-row strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* =========================
+   작은 모바일
+========================= */
+@media (max-width: 360px) {
+    .main-section {
+        padding: 72px 18px 64px;
+    }
+
+    .main-photo {
+        height: 56svh;
+    }
+
+    .main-content h1 {
+        font-size: 35px;
+    }
+
+    .intro-section,
+    .location-section,
+    .account-section {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .intro-content h2 {
+        font-size: 23px;
+    }
+
+    .intro-content p {
+        font-size: 15px;
+    }
+
+    .gallery-section {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .gallery-slider {
+        height: 70svh;
+    }
+
+    #map {
+        height: 250px;
+    }
+
+    .gallery-arrow {
+        width: 44px;
+        height: 44px;
+        font-size: 34px;
+    }
 }
