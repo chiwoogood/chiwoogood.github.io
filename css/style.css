@@ -2,6 +2,19 @@
     box-sizing: border-box;
 }
 
+:root {
+    --base-bg: #fff7fa;
+    --soft-pink: #fff1f6;
+    --soft-pink-2: #fff6f8;
+    --soft-pink-3: #ffeef4;
+    --line-color: rgba(210, 170, 180, 0.28);
+    --text-main: #5f4b45;
+    --text-sub: #8a7470;
+    --point: #d9a7b4;
+    --white-glass: rgba(255, 255, 255, 0.74);
+    --pink-shadow: rgba(210, 150, 165, 0.18);
+}
+
 html {
     margin: 0;
     padding: 0;
@@ -11,16 +24,16 @@ html {
 body {
     margin: 0;
     padding: 0;
-    background: #fffaf7;
+    background: var(--base-bg);
     font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-    color: #2f2f2f;
+    color: var(--text-main);
 }
 
 .mobile-wrap {
     width: 100%;
     max-width: 430px;
     margin: 0 auto;
-    background: #fffaf7;
+    background: var(--base-bg);
     overflow-x: hidden;
 }
 
@@ -31,14 +44,14 @@ body {
     overflow: visible;
 }
 
-/* 사진 중심 구역만 화면을 꽉 채움 */
+/* 사진 중심 구역 */
 .main-section,
 .gallery-section {
     height: 100svh;
     overflow: hidden;
 }
 
-/* 내용이 있는 구역은 잘리지 않게 자연 높이 */
+/* 내용 중심 구역 */
 .intro-section,
 .location-section,
 .account-section {
@@ -47,7 +60,7 @@ body {
     overflow: visible;
 }
 
-/* 얇은 회색 구분선 */
+/* 얇은 구분선 */
 .section-line::before {
     content: "";
     position: absolute;
@@ -55,7 +68,7 @@ body {
     left: 24px;
     right: 24px;
     height: 1px;
-    background: rgba(170, 170, 170, 0.28);
+    background: var(--line-color);
     z-index: 20;
 }
 
@@ -71,13 +84,10 @@ body {
     text-transform: uppercase;
 }
 
-.white-title {
-    color: rgba(255, 255, 255, 0.98);
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
-}
-
+.white-title,
 .dark-title {
-    color: rgba(80, 70, 65, 0.68);
+    color: rgba(120, 88, 82, 0.72);
+    text-shadow: none;
 }
 
 /* 배경 이미지 */
@@ -89,63 +99,79 @@ body {
     object-fit: cover;
 }
 
-/* 어두운 오버레이 제거: 거의 투명한 밝은 막만 유지 */
-.dark-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    background: rgba(255, 255, 255, 0.02);
-    pointer-events: none;
-}
-
-.dark-overlay.stronger {
-    background: rgba(255, 255, 255, 0.04);
+/* 어두운 오버레이 완전 제거 */
+.dark-overlay,
+.dark-overlay.stronger,
+.gallery-dim {
+    display: none;
 }
 
 /* =========================
-   메인 사진
+   메인
 ========================= */
 .main-section {
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    background: #fffaf7;
+    background:
+        radial-gradient(circle at 20% 8%, rgba(255, 220, 232, 0.68), transparent 34%),
+        linear-gradient(180deg, var(--soft-pink-2), var(--soft-pink));
+}
+
+/* 사진을 어둡게 덮지 않고, 연분홍 빛만 아주 살짝 */
+.main-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: rgba(255, 238, 246, 0.26);
+    pointer-events: none;
 }
 
 .main-content {
     position: relative;
     z-index: 5;
-    width: 100%;
-    padding: 0 24px 74px;
+    width: calc(100% - 48px);
+    margin: 0 24px 64px;
+    padding: 22px 18px;
     text-align: center;
-    color: white;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
+    color: var(--text-main);
+    background: var(--white-glass);
+    border: 1px solid rgba(255, 255, 255, 0.86);
+    border-radius: 24px;
+    box-shadow: 0 16px 42px var(--pink-shadow);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    text-shadow: none;
 }
 
 .main-label {
-    margin: 0 0 18px;
+    margin: 0 0 16px;
     font-size: 12px;
     letter-spacing: 0.28em;
+    color: var(--text-sub);
     text-transform: uppercase;
 }
 
 .main-content h1 {
     margin: 0;
-    font-size: 40px;
+    font-size: 38px;
     font-weight: 300;
     letter-spacing: 0.08em;
+    color: var(--text-main);
 }
 
 .main-date {
     margin: 18px 0 6px;
     font-size: 15px;
     letter-spacing: 0.15em;
+    color: var(--text-sub);
 }
 
 .main-place {
     margin: 0;
     font-size: 14px;
-    opacity: 0.92;
+    color: var(--text-sub);
 }
 
 /* =========================
@@ -157,8 +183,8 @@ body {
     justify-content: center;
     padding: 86px 0;
     background:
-        radial-gradient(circle at 12% 10%, rgba(255, 229, 212, 0.72), transparent 35%),
-        linear-gradient(180deg, #fffaf7, #fff5f0);
+        radial-gradient(circle at 12% 10%, rgba(255, 218, 229, 0.66), transparent 35%),
+        linear-gradient(180deg, var(--soft-pink-2), var(--soft-pink));
 }
 
 .intro-content {
@@ -174,21 +200,32 @@ body {
     font-size: 25px;
     font-weight: 400;
     line-height: 1.45;
-    color: #323232;
+    color: var(--text-main);
 }
 
 .intro-content p {
     margin: 0;
     font-size: 16px;
     line-height: 2.15;
-    color: #5d5d5d;
+    color: var(--text-sub);
 }
 
 /* =========================
    갤러리
 ========================= */
 .gallery-section {
-    background: #fffaf7;
+    background:
+        radial-gradient(circle at 80% 10%, rgba(255, 218, 229, 0.58), transparent 36%),
+        linear-gradient(180deg, var(--soft-pink-2), var(--soft-pink));
+}
+
+.gallery-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    background: rgba(255, 238, 246, 0.22);
+    pointer-events: none;
 }
 
 .gallery-slider {
@@ -202,7 +239,7 @@ body {
     position: absolute;
     inset: 0;
     opacity: 0;
-    transform: scale(1.025);
+    transform: scale(1.018);
     transition:
         opacity 1.45s ease,
         transform 2.4s ease;
@@ -217,7 +254,7 @@ body {
 
 .gallery-slide.leaving {
     opacity: 0;
-    transform: scale(1.015);
+    transform: scale(1.01);
     z-index: 2;
 }
 
@@ -227,41 +264,33 @@ body {
     object-fit: cover;
 }
 
-/* 갤러리 어두운 배경 제거 */
-.gallery-dim {
-    position: absolute;
-    inset: 0;
-    z-index: 5;
-    background: rgba(255, 255, 255, 0.02);
-    pointer-events: none;
-}
-
-/* 하단 흰색 화살표 */
+/* 하단 화살표 */
 .gallery-arrow {
     position: absolute;
     bottom: 54px;
     z-index: 10;
     width: 48px;
     height: 48px;
-    border: 1px solid rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.92);
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.14);
-    color: white;
+    background: rgba(255, 246, 250, 0.76);
+    color: #9d7770;
     font-size: 38px;
     font-weight: 200;
     line-height: 38px;
     cursor: pointer;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     display: flex;
     align-items: center;
     justify-content: center;
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 12px 30px var(--pink-shadow);
+    text-shadow: none;
 }
 
 .gallery-arrow:active {
     transform: scale(0.94);
-    background: rgba(255, 255, 255, 0.24);
+    background: rgba(255, 238, 246, 0.9);
 }
 
 .gallery-prev {
@@ -289,13 +318,14 @@ body {
     padding: 0;
     border: none;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.52);
+    background: rgba(255, 246, 250, 0.72);
+    box-shadow: 0 4px 12px rgba(210, 150, 165, 0.18);
 }
 
 .gallery-dot.active {
     width: 18px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.96);
+    background: #f2b8c6;
 }
 
 /* =========================
@@ -306,20 +336,14 @@ body {
     align-items: center;
     justify-content: center;
     padding: 78px 0 72px;
-    background: #fffaf7;
+    background:
+        radial-gradient(circle at 90% 8%, rgba(255, 218, 229, 0.66), transparent 36%),
+        linear-gradient(180deg, var(--soft-pink-2), var(--soft-pink));
 }
 
-/* 어두운 배경 제거: 밝은 웨딩톤 배경 */
+/* 기존 배경 이미지 제거 */
 .location-bg {
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(rgba(255, 250, 247, 0.86), rgba(255, 250, 247, 0.86)),
-        url("../images/main.jpg");
-    background-size: cover;
-    background-position: center;
-    filter: none;
-    transform: none;
+    display: none;
 }
 
 .location-content {
@@ -327,7 +351,7 @@ body {
     z-index: 6;
     width: 100%;
     padding: 0 22px;
-    color: #333;
+    color: var(--text-main);
     text-align: center;
 }
 
@@ -336,14 +360,14 @@ body {
     font-size: 29px;
     font-weight: 400;
     letter-spacing: 0.02em;
-    color: #333;
+    color: var(--text-main);
 }
 
 .location-address {
     margin: 0 0 22px;
     font-size: 14px;
     line-height: 1.75;
-    color: #666;
+    color: var(--text-sub);
 }
 
 #map {
@@ -351,23 +375,23 @@ body {
     height: 280px;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.96);
-    color: #777;
+    color: #9a827c;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 14px;
     overflow: hidden;
-    box-shadow: 0 18px 48px rgba(80, 52, 42, 0.10);
+    box-shadow: 0 18px 48px var(--pink-shadow);
 }
 
 .location-info {
     margin-top: 20px;
     padding: 18px 18px;
     border-radius: 18px;
-    background: rgba(255, 255, 255, 0.88);
-    border: 1px solid rgba(180, 180, 180, 0.26);
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.88);
     text-align: left;
-    box-shadow: 0 14px 38px rgba(80, 52, 42, 0.07);
+    box-shadow: 0 14px 38px var(--pink-shadow);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 }
@@ -376,13 +400,13 @@ body {
     margin: 6px 0;
     font-size: 13px;
     line-height: 1.7;
-    color: #666;
+    color: var(--text-sub);
 }
 
 .location-info strong {
     display: inline-block;
     min-width: 52px;
-    color: #333;
+    color: var(--text-main);
     font-weight: 600;
 }
 
@@ -395,8 +419,8 @@ body {
     justify-content: center;
     padding: 86px 0 72px;
     background:
-        radial-gradient(circle at 90% 8%, rgba(255, 226, 210, 0.78), transparent 36%),
-        linear-gradient(180deg, #fffaf7, #fff2ec);
+        radial-gradient(circle at 90% 8%, rgba(255, 218, 229, 0.66), transparent 36%),
+        linear-gradient(180deg, var(--soft-pink-2), var(--soft-pink));
 }
 
 .account-content {
@@ -411,23 +435,23 @@ body {
     margin: 0 0 12px;
     font-size: 28px;
     font-weight: 400;
-    color: #333;
+    color: var(--text-main);
 }
 
 .account-desc {
     margin: 0 0 30px;
     font-size: 14px;
     line-height: 1.8;
-    color: #777;
+    color: var(--text-sub);
 }
 
 .accordion {
     margin: 14px 0;
     border-radius: 20px;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(180, 180, 180, 0.32);
-    box-shadow: 0 18px 46px rgba(80, 52, 42, 0.07);
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 18px 46px var(--pink-shadow);
 }
 
 .accordion-button {
@@ -435,7 +459,7 @@ body {
     padding: 20px 20px;
     border: none;
     background: transparent;
-    color: #333;
+    color: var(--text-main);
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
@@ -448,7 +472,7 @@ body {
     font-style: normal;
     font-size: 25px;
     font-weight: 200;
-    color: #888;
+    color: #b48d87;
     transition: transform 0.25s ease;
 }
 
@@ -473,20 +497,20 @@ body {
 .account-row {
     padding: 15px 0;
     text-align: left;
-    border-top: 1px solid rgba(180, 180, 180, 0.28);
+    border-top: 1px solid rgba(210, 170, 180, 0.28);
 }
 
 .account-row p {
     margin: 0 0 6px;
     font-size: 13px;
-    color: #888;
+    color: var(--text-sub);
 }
 
 .account-row strong {
     display: block;
     font-size: 15px;
     font-weight: 500;
-    color: #333;
+    color: var(--text-main);
 }
 
 /* 아주 작은 모바일 대응 */
