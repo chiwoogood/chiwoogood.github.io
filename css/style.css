@@ -19,6 +19,7 @@ html {
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
 }
 
 body {
@@ -42,16 +43,18 @@ body {
     width: 100%;
     min-height: 100svh;
     overflow: visible;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
 }
 
-/* 사진 중심 구역 */
+/* 사진 중심 구역만 화면을 꽉 채움 */
 .main-section,
 .gallery-section {
     height: 100svh;
     overflow: hidden;
 }
 
-/* 내용 중심 구역 */
+/* 내용 중심 구역은 잘리지 않게 자연 높이 */
 .intro-section,
 .location-section,
 .account-section {
@@ -118,7 +121,7 @@ body {
         linear-gradient(180deg, var(--soft-pink-2), var(--soft-pink));
 }
 
-/* 사진을 어둡게 덮지 않고, 연분홍 빛만 아주 살짝 */
+/* 사진 위에 어두운 막이 아니라 연분홍 빛만 살짝 */
 .main-section::after {
     content: "";
     position: absolute;
@@ -219,6 +222,7 @@ body {
         linear-gradient(180deg, var(--soft-pink-2), var(--soft-pink));
 }
 
+/* 갤러리 사진 위에도 어두운 막 없이 연분홍 빛만 살짝 */
 .gallery-section::after {
     content: "";
     position: absolute;
@@ -341,7 +345,7 @@ body {
         linear-gradient(180deg, var(--soft-pink-2), var(--soft-pink));
 }
 
-/* 기존 배경 이미지 제거 */
+/* 기존 어두운 배경 이미지 제거 */
 .location-bg {
     display: none;
 }
