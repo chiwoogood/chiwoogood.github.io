@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     initGallerySlider();
     initAccordion();
-    initSectionSnap();
     initKakaoMap();
 });
 
@@ -137,92 +136,7 @@ function initAccordion() {
 }
 
 /* =========================
-   섹션 스냅 이동
-   - 모바일 청첩장 구역별 이동
-   - 스크롤이 멈추면 가장 가까운 구역으로 완전히 이동
-========================= */
-function initSectionSnap() {
-    const mobileWrap = document.querySelector(".mobile-wrap");
-    const pageSections = document.querySelectorAll(".page-section");
-
-    let snapTimer = null;
-    let isSnapping = false;
-
-    if (!mobileWrap || !pageSections.length) {
-        return;
-    }
-
-    function getClosestSection() {
-        let closestSection = null;
-        let closestDistance = Infinity;
-
-        pageSections.forEach(function (section) {
-            const distance = Math.abs(section.offsetTop - mobileWrap.scrollTop);
-
-            if (distance < closestDistance) {
-                closestDistance = distance;
-                closestSection = section;
-            }
-        });
-
-        return closestSection;
-    }
-
-    function snapToClosestSection() {
-        if (isSnapping) {
-            return;
-        }
-
-        const closestSection = getClosestSection();
-
-        if (!closestSection) {
-            return;
-        }
-
-        const targetTop = closestSection.offsetTop;
-        const currentTop = mobileWrap.scrollTop;
-        const diff = Math.abs(targetTop - currentTop);
-
-        if (diff < 4) {
-            return;
-        }
-
-        isSnapping = true;
-
-        mobileWrap.scrollTo({
-            top: targetTop,
-            behavior: "smooth"
-        });
-
-        setTimeout(function () {
-            isSnapping = false;
-        }, 420);
-    }
-
-    mobileWrap.addEventListener("scroll", function () {
-        if (isSnapping) {
-            return;
-        }
-
-        clearTimeout(snapTimer);
-
-        snapTimer = setTimeout(function () {
-            snapToClosestSection();
-        }, 120);
-    });
-
-    mobileWrap.addEventListener("touchend", function () {
-        clearTimeout(snapTimer);
-
-        snapTimer = setTimeout(function () {
-            snapToClosestSection();
-        }, 160);
-    });
-}
-
-/* =========================
    카카오 지도
-   - index.html에서 카카오 SDK 주석 해제 후 appkey 입력 필요
 ========================= */
 function initKakaoMap() {
     const mapContainer = document.getElementById("map");
