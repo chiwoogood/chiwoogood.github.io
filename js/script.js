@@ -1,12 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
     initGallerySlider();
     initAccordion();
-    initSlowSectionMove();
     initKakaoMap();
 });
 
 /* =========================
    갤러리 슬라이드
+   - 3초 간격 자동 전환
+   - 흐려지면서 자연스럽게 전환
+   - 하단 흰색 화살표 수동 이동
+   - 하단 점 버튼 이동
 ========================= */
 function initGallerySlider() {
     const slides = document.querySelectorAll(".gallery-slide");
@@ -58,7 +61,7 @@ function initGallerySlider() {
 
         setTimeout(function () {
             removeLeavingClass();
-        }, 1200);
+        }, 1600);
     }
 
     function nextSlide() {
@@ -114,7 +117,7 @@ function initGallerySlider() {
 }
 
 /* =========================
-   계좌 접기 / 펼치기
+   신랑측 / 신부측 계좌 접기 펼치기
 ========================= */
 function initAccordion() {
     const accordions = document.querySelectorAll(".accordion");
@@ -133,135 +136,8 @@ function initAccordion() {
 }
 
 /* =========================
-   느린 섹션 이동
-   - 모바일 청첩장용
-   - 한 번 스와이프하면 다음/이전 구역으로 천천히 이동
-========================= */
-function initSlowSectionMove() {
-    const sections = document.querySelectorAll(".page-section");
-
-    let currentSectionIndex = 0;
-    let touchStartY = 0;
-    let touchEndY = 0;
-    let isMoving = false;
-
-    if (!sections.length) {
-        return;
-    }
-
-    function easeInOutCubic(t) {
-        if (t < 0.5) {
-            return 4 * t * t * t;
-        }
-
-        return 1 - Math.pow(-2 * t + 2, 3) / 2;
-    }
-
-    function moveToSection(targetIndex) {
-        if (isMoving) {
-            return;
-        }
-
-        if (targetIndex < 0 || targetIndex >= sections.length) {
-            return;
-        }
-
-        isMoving = true;
-
-        const startY = window.pageYOffset || document.documentElement.scrollTop;
-        const targetY = sections[targetIndex].offsetTop;
-        const distance = targetY - startY;
-        const duration = 850;
-        let startTime = null;
-
-        function animateScroll(currentTime) {
-            if (!startTime) {
-                startTime = currentTime;
-            }
-
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const easedProgress = easeInOutCubic(progress);
-
-            window.scrollTo(0, startY + distance * easedProgress);
-
-            if (progress < 1) {
-                requestAnimationFrame(animateScroll);
-            } else {
-                currentSectionIndex = targetIndex;
-                isMoving = false;
-            }
-        }
-
-        requestAnimationFrame(animateScroll);
-    }
-
-    function updateCurrentSectionIndex() {
-        const currentY = window.pageYOffset || document.documentElement.scrollTop;
-        let closestIndex = 0;
-        let closestDistance = Infinity;
-
-        sections.forEach(function (section, index) {
-            const distance = Math.abs(section.offsetTop - currentY);
-
-            if (distance < closestDistance) {
-                closestDistance = distance;
-                closestIndex = index;
-            }
-        });
-
-        currentSectionIndex = closestIndex;
-    }
-
-    window.addEventListener("touchstart", function (event) {
-        if (!event.touches || !event.touches.length) {
-            return;
-        }
-
-        touchStartY = event.touches[0].clientY;
-    }, { passive: true });
-
-    window.addEventListener("touchend", function (event) {
-        if (!event.changedTouches || !event.changedTouches.length) {
-            return;
-        }
-
-        touchEndY = event.changedTouches[0].clientY;
-
-        const diffY = touchStartY - touchEndY;
-
-        if (Math.abs(diffY) < 45) {
-            return;
-        }
-
-        updateCurrentSectionIndex();
-
-        if (diffY > 0) {
-            moveToSection(currentSectionIndex + 1);
-        } else {
-            moveToSection(currentSectionIndex - 1);
-        }
-    }, { passive: true });
-
-    window.addEventListener("wheel", function (event) {
-        if (Math.abs(event.deltaY) < 20) {
-            return;
-        }
-
-        event.preventDefault();
-
-        updateCurrentSectionIndex();
-
-        if (event.deltaY > 0) {
-            moveToSection(currentSectionIndex + 1);
-        } else {
-            moveToSection(currentSectionIndex - 1);
-        }
-    }, { passive: false });
-}
-
-/* =========================
    카카오 지도
+   - index.html에서 카카오 SDK 주석 해제 후 appkey 입력 필요
 ========================= */
 function initKakaoMap() {
     const mapContainer = document.getElementById("map");
