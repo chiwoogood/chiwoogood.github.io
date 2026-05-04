@@ -1,17 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
+    initSectionEase();
     initGallerySlider();
     initAccordion();
-    initFadeInSection();
     initKakaoMap();
 });
 
 /* =========================
-   섹션 자연스러운 등장 효과
+   섹션 이지인 효과
    - 섹션 전체를 움직이지 않음
-   - 내용만 opacity로 자연스럽게 표시
-   - 기존 레이아웃 구조 안 깨짐
+   - 내부 내용만 자연스럽게 들어옴
+   - 화면에 들어올 때마다 다시 적용됨
 ========================= */
-function initFadeInSection() {
+function initSectionEase() {
     const targets = document.querySelectorAll(
         ".main-content, .intro-content, .gallery-slider, .location-content, .account-content"
     );
@@ -20,22 +20,21 @@ function initFadeInSection() {
         return;
     }
 
-    targets.forEach(function (target, index) {
-        target.classList.add("fade-in-target");
-
-        if (index === 0) {
-            target.classList.add("visible");
-        }
+    targets.forEach(function (target) {
+        target.classList.add("ease-target");
     });
 
     const observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
             if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
+                entry.target.classList.add("ease-visible");
+            } else {
+                entry.target.classList.remove("ease-visible");
             }
         });
     }, {
-        threshold: 0.25
+        threshold: 0.18,
+        rootMargin: "0px 0px -8% 0px"
     });
 
     targets.forEach(function (target) {
@@ -45,10 +44,6 @@ function initFadeInSection() {
 
 /* =========================
    갤러리 슬라이드
-   - 3초 간격 자동 전환
-   - 흐려지면서 자연스럽게 전환
-   - 하단 흰색 화살표 수동 이동
-   - 하단 점 버튼 이동
 ========================= */
 function initGallerySlider() {
     const slides = document.querySelectorAll(".gallery-slide");
@@ -176,7 +171,6 @@ function initAccordion() {
 
 /* =========================
    카카오 지도
-   - index.html에서 카카오 SDK 주석 해제 후 appkey 입력 필요
 ========================= */
 function initKakaoMap() {
     const mapContainer = document.getElementById("map");
