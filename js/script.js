@@ -1,16 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
     initGallerySlider();
     initAccordion();
-    initSectionFadeTransition();
+    initSectionReveal();
     initKakaoMap();
 });
 
 /* =========================
-   섹션 이동 자연스러운 전환
-   - 스크롤로 다음 섹션에 진입하면
-   - 현재 섹션이 부드럽게 선명해짐
+   섹션 자연스러운 등장 효과
+   - 섹션 전체를 움직이지 않음
+   - 내용물만 부드럽게 등장
+   - 스크롤 구조 깨지지 않음
 ========================= */
-function initSectionFadeTransition() {
+function initSectionReveal() {
     const sections = document.querySelectorAll(".page-section");
 
     if (!sections.length) {
@@ -18,8 +19,6 @@ function initSectionFadeTransition() {
     }
 
     sections.forEach(function (section, index) {
-        section.classList.add("section-fade");
-
         if (index === 0) {
             section.classList.add("section-visible");
         }
@@ -29,12 +28,11 @@ function initSectionFadeTransition() {
         entries.forEach(function (entry) {
             if (entry.isIntersecting) {
                 entry.target.classList.add("section-visible");
-            } else {
-                entry.target.classList.remove("section-visible");
             }
         });
     }, {
-        threshold: 0.42
+        threshold: 0.22,
+        rootMargin: "0px 0px -12% 0px"
     });
 
     sections.forEach(function (section) {
