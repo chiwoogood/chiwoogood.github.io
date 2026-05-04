@@ -5,6 +5,8 @@
 html {
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
 }
 
 body {
@@ -13,30 +15,25 @@ body {
     background: #111;
     font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
     color: #2f2f2f;
-    overscroll-behavior-y: none;
+    overscroll-behavior-y: contain;
 }
 
 .mobile-wrap {
     width: 100%;
     max-width: 430px;
-    height: 100svh;
     margin: 0 auto;
     background: #fffaf7;
-    overflow-y: auto;
-    overflow-x: hidden;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
 }
 
 .page-section {
     position: relative;
     width: 100%;
-    height: 100svh;
     min-height: 100svh;
+    height: 100svh;
     overflow: hidden;
     scroll-snap-align: start;
-    scroll-snap-stop: always;
+    scroll-snap-stop: normal;
 }
 
 .section-line::before {
