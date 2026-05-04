@@ -3,66 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Mobile Wedding Invitation</title>
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <section class="main-visual">
-        <img src="images/main.jpg" alt="메인 웨딩 사진">
-        <div class="main-text">
-            <p>우리 결혼합니다</p>
+<main class="mobile-wrap">
+
+    <!-- 1. 메인 사진 -->
+    <section class="page-section main-section">
+        <img src="images/main.jpg" alt="메인 웨딩 사진" class="section-bg">
+        <div class="dark-overlay"></div>
+
+        <div class="main-content">
+            <p class="main-label">Wedding Invitation</p>
             <h1>신랑 · 신부</h1>
-            <span>2026.00.00 SAT</span>
+            <p class="main-date">2026.00.00 SAT</p>
+            <p class="main-place">○○웨딩홀</p>
         </div>
     </section>
 
-    <section class="intro section">
-        <h2>초대합니다</h2>
-        <p>
-            서로의 인생에 가장 따뜻한 동행이 되어<br>
-            새로운 시작을 함께하려 합니다.<br>
-            소중한 걸음으로 축복해 주세요.
-        </p>
-    </section>
+    <!-- 2. 소갯말 -->
+    <section class="page-section intro-section section-line">
+        <div class="section-title dark-title">Invitation</div>
 
-    <section class="gallery section">
-        <h2>Gallery</h2>
-        <div class="gallery-grid">
-            <img src="images/gallery1.jpg" alt="갤러리 사진 1">
-            <img src="images/gallery2.jpg" alt="갤러리 사진 2">
-            <img src="images/gallery3.jpg" alt="갤러리 사진 3">
-            <img src="images/gallery4.jpg" alt="갤러리 사진 4">
+        <div class="intro-content">
+            <h2>소중한 분들을 초대합니다</h2>
+            <p>
+                서로에게 가장 따뜻한 사람이 되어<br>
+                새로운 시작을 함께하려 합니다.<br><br>
+                귀한 걸음으로 함께해 주시면<br>
+                오래도록 감사한 마음으로 간직하겠습니다.
+            </p>
         </div>
     </section>
 
-    <section class="location section">
-        <h2>오시는 길</h2>
-        <p>서울특별시 ○○구 ○○로 00, 웨딩홀</p>
+    <!-- 3. 갤러리 -->
+    <section class="page-section gallery-section section-line">
+        <div class="section-title white-title">Gallery</div>
 
-        <div id="map"></div>
+        <div class="gallery-slider">
+
+            <div class="gallery-slide active">
+                <img src="images/gallery1.jpg" alt="갤러리 사진 1">
+            </div>
+
+            <div class="gallery-slide">
+                <img src="images/gallery2.jpg" alt="갤러리 사진 2">
+            </div>
+
+            <div class="gallery-slide">
+                <img src="images/gallery3.jpg" alt="갤러리 사진 3">
+            </div>
+
+            <div class="gallery-slide">
+                <img src="images/gallery4.jpg" alt="갤러리 사진 4">
+            </div>
+
+            <div class="gallery-dim"></div>
+
+            <button class="gallery-arrow gallery-prev" type="button" aria-label="이전 사진">
+                ‹
+            </button>
+
+            <button class="gallery-arrow gallery-next" type="button" aria-label="다음 사진">
+                ›
+            </button>
+
+            <div class="gallery-dots">
+                <button class="gallery-dot active" type="button" aria-label="1번 사진"></button>
+                <button class="gallery-dot" type="button" aria-label="2번 사진"></button>
+                <button class="gallery-dot" type="button" aria-label="3번 사진"></button>
+                <button class="gallery-dot" type="button" aria-label="4번 사진"></button>
+            </div>
+
+        </div>
     </section>
 
-    <section class="account section">
-        <h2>마음 전하실 곳</h2>
+    <!-- 4. 오시는 길 -->
+    <section class="page-section location-section section-line">
+        <div class="section-title white-title">Location</div>
 
-        <div class="accordion">
-            <button class="accordion-btn">신랑측 계좌 보기</button>
-            <div class="accordion-content">
-                <p>신랑 아버지: 국민은행 000000-00-000000</p>
-                <p>신랑 어머니: 신한은행 000-000-000000</p>
+        <div class="location-bg"></div>
+        <div class="dark-overlay stronger"></div>
+
+        <div class="location-content">
+            <h2>오시는 길</h2>
+            <p class="location-address">
+                서울특별시 ○○구 ○○로 00<br>
+                ○○웨딩홀 3층 그랜드홀
+            </p>
+
+            <div id="map">
+                지도 API 영역
+            </div>
+
+            <div class="location-info">
+                <p><strong>지하철</strong> ○○역 1번 출구 도보 5분</p>
+                <p><strong>주차</strong> 웨딩홀 지하주차장 이용</p>
             </div>
         </div>
+    </section>
 
-        <div class="accordion">
-            <button class="accordion-btn">신부측 계좌 보기</button>
-            <div class="accordion-content">
-                <p>신부 아버지: 국민은행 000000-00-000000</p>
-                <p>신부 어머니: 신한은행 000-000-000000</p>
+    <!-- 5. 계좌 -->
+    <section class="page-section account-section section-line">
+        <div class="section-title dark-title">Account</div>
+
+        <div class="account-content">
+            <h2>마음 전하실 곳</h2>
+            <p class="account-desc">
+                참석이 어려우신 분들을 위해<br>
+                계좌번호를 안내드립니다.
+            </p>
+
+            <div class="accordion">
+                <button class="accordion-button" type="button">
+                    <span>신랑측 계좌</span>
+                    <em>+</em>
+                </button>
+
+                <div class="accordion-content">
+                    <div class="account-row">
+                        <p>신랑 아버지</p>
+                        <strong>국민은행 000000-00-000000</strong>
+                    </div>
+
+                    <div class="account-row">
+                        <p>신랑 어머니</p>
+                        <strong>신한은행 000-000-000000</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-button" type="button">
+                    <span>신부측 계좌</span>
+                    <em>+</em>
+                </button>
+
+                <div class="accordion-content">
+                    <div class="account-row">
+                        <p>신부 아버지</p>
+                        <strong>국민은행 000000-00-000000</strong>
+                    </div>
+
+                    <div class="account-row">
+                        <p>신부 어머니</p>
+                        <strong>신한은행 000-000-000000</strong>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <script src="script.js"></script>
+</main>
+
+<!-- 카카오 지도 API를 쓸 경우 아래 appkey만 실제 키로 교체하세요. -->
+<!-- <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=여기에_카카오_API_KEY"></script> -->
+
+<script src="js/script.js"></script>
 </body>
 </html>
