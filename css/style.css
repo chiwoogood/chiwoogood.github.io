@@ -5,8 +5,7 @@
 html {
     margin: 0;
     padding: 0;
-    scroll-behavior: smooth;
-    scroll-snap-type: y proximity;
+    scroll-behavior: auto;
 }
 
 body {
@@ -32,8 +31,6 @@ body {
     min-height: 100svh;
     height: 100svh;
     overflow: hidden;
-    scroll-snap-align: start;
-    scroll-snap-stop: normal;
 }
 
 .section-line::before {
