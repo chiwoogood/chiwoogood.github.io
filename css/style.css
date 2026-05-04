@@ -5,7 +5,7 @@
 html {
     margin: 0;
     padding: 0;
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -14,7 +14,6 @@ body {
     background: #111;
     font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
     color: #2f2f2f;
-    overscroll-behavior-y: contain;
 }
 
 .mobile-wrap {
@@ -22,17 +21,33 @@ body {
     max-width: 430px;
     margin: 0 auto;
     background: #fffaf7;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .page-section {
     position: relative;
     width: 100%;
     min-height: 100svh;
+    overflow: visible;
+}
+
+/* 사진 중심 구역만 한 화면 꽉 채움 */
+.main-section,
+.gallery-section {
     height: 100svh;
     overflow: hidden;
 }
 
+/* 내용이 있는 구역은 절대 잘리지 않도록 자연 높이 */
+.intro-section,
+.location-section,
+.account-section {
+    min-height: 100svh;
+    height: auto;
+    overflow: visible;
+}
+
+/* 얇은 회색 구분선 */
 .section-line::before {
     content: "";
     position: absolute;
@@ -44,6 +59,7 @@ body {
     z-index: 20;
 }
 
+/* 우측 상단 부제목 */
 .section-title {
     position: absolute;
     top: 22px;
@@ -72,6 +88,7 @@ body {
     object-fit: cover;
 }
 
+/* 흰 글씨가 잘 보이도록 어두운 톤 */
 .dark-overlay {
     position: absolute;
     inset: 0;
@@ -79,7 +96,7 @@ body {
     background:
         linear-gradient(
             180deg,
-            rgba(0, 0, 0, 0.18),
+            rgba(0, 0, 0, 0.16),
             rgba(0, 0, 0, 0.26) 42%,
             rgba(0, 0, 0, 0.48)
         );
@@ -95,7 +112,9 @@ body {
         );
 }
 
-/* 메인 */
+/* =========================
+   메인 사진
+========================= */
 .main-section {
     display: flex;
     align-items: flex-end;
@@ -138,11 +157,14 @@ body {
     opacity: 0.88;
 }
 
-/* 소개 */
+/* =========================
+   소갯말
+========================= */
 .intro-section {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 86px 0;
     background:
         radial-gradient(circle at 10% 10%, rgba(255, 229, 212, 0.9), transparent 34%),
         linear-gradient(180deg, #fffaf7, #fff3ed);
@@ -169,7 +191,9 @@ body {
     color: #5d5d5d;
 }
 
-/* 갤러리 */
+/* =========================
+   갤러리
+========================= */
 .gallery-section {
     background: #111;
 }
@@ -188,9 +212,9 @@ body {
     transform: scale(1.08);
     filter: blur(8px);
     transition:
-        opacity 1.15s ease,
-        transform 1.8s ease,
-        filter 1.4s ease;
+        opacity 1.65s ease,
+        transform 2.2s ease,
+        filter 1.8s ease;
 }
 
 .gallery-slide.active {
@@ -202,7 +226,7 @@ body {
 
 .gallery-slide.leaving {
     opacity: 0;
-    transform: scale(0.985);
+    transform: scale(0.99);
     filter: blur(10px);
     z-index: 2;
 }
@@ -227,6 +251,7 @@ body {
     pointer-events: none;
 }
 
+/* 하단 흰색 화살표 */
 .gallery-arrow {
     position: absolute;
     bottom: 54px;
@@ -287,11 +312,14 @@ body {
     background: rgba(255, 255, 255, 0.95);
 }
 
-/* 오시는 길 */
+/* =========================
+   오시는 길
+========================= */
 .location-section {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 78px 0 72px;
     background: #222;
 }
 
@@ -311,7 +339,7 @@ body {
     position: relative;
     z-index: 6;
     width: 100%;
-    padding: 74px 22px 34px;
+    padding: 0 22px;
     color: white;
     text-align: center;
 }
@@ -332,7 +360,7 @@ body {
 
 #map {
     width: 100%;
-    height: 330px;
+    height: 280px;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.92);
     color: #777;
@@ -369,11 +397,14 @@ body {
     font-weight: 600;
 }
 
-/* 계좌 */
+/* =========================
+   계좌
+========================= */
 .account-section {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 86px 0 72px;
     background:
         radial-gradient(circle at 90% 8%, rgba(255, 226, 210, 0.9), transparent 36%),
         linear-gradient(180deg, #fffaf7, #fff1eb);
@@ -381,7 +412,7 @@ body {
 
 .account-content {
     width: 100%;
-    padding: 78px 22px 42px;
+    padding: 0 22px;
     text-align: center;
 }
 
@@ -482,12 +513,22 @@ body {
     }
 
     #map {
-        height: 300px;
+        height: 250px;
     }
 
     .gallery-arrow {
         width: 44px;
         height: 44px;
         font-size: 34px;
+    }
+
+    .location-section {
+        padding-top: 72px;
+        padding-bottom: 60px;
+    }
+
+    .account-section {
+        padding-top: 76px;
+        padding-bottom: 60px;
     }
 }
