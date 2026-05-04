@@ -11,24 +11,27 @@
 
 <main class="mobile-wrap">
 
-    <!-- 1. 메인 사진 -->
+    <!-- 1. 메인 -->
     <section class="page-section main-section">
-        <img src="images/main.jpg" alt="메인 웨딩 사진" class="section-bg">
-        <div class="dark-overlay"></div>
+        <div class="section-title">Main</div>
 
-        <div class="main-content">
-            <p class="main-label">Wedding Invitation</p>
-            <h1>신랑 · 신부</h1>
-            <p class="main-date">2026.00.00 SAT</p>
-            <p class="main-place">○○웨딩홀</p>
+        <div class="section-panel main-panel">
+            <img src="images/main.jpg" alt="메인 웨딩 사진" class="main-photo">
+
+            <div class="main-content">
+                <p class="main-label">Wedding Invitation</p>
+                <h1>신랑 · 신부</h1>
+                <p class="main-date">2026.00.00 SAT</p>
+                <p class="main-place">○○웨딩홀</p>
+            </div>
         </div>
     </section>
 
     <!-- 2. 소갯말 -->
     <section class="page-section intro-section section-line">
-        <div class="section-title dark-title">Invitation</div>
+        <div class="section-title">Invitation</div>
 
-        <div class="intro-content">
+        <div class="section-panel intro-content">
             <h2>소중한 분들을 초대합니다</h2>
             <p>
                 서로에게 가장 따뜻한 사람이 되어<br>
@@ -41,54 +44,51 @@
 
     <!-- 3. 갤러리 -->
     <section class="page-section gallery-section section-line">
-        <div class="section-title white-title">Gallery</div>
+        <div class="section-title">Gallery</div>
 
-        <div class="gallery-slider">
+        <div class="section-panel gallery-panel">
+            <div class="gallery-slider">
 
-            <div class="gallery-slide active">
-                <img src="images/gallery1.jpg" alt="갤러리 사진 1">
+                <div class="gallery-slide active">
+                    <img src="images/gallery1.jpg" alt="갤러리 사진 1">
+                </div>
+
+                <div class="gallery-slide">
+                    <img src="images/gallery2.jpg" alt="갤러리 사진 2">
+                </div>
+
+                <div class="gallery-slide">
+                    <img src="images/gallery3.jpg" alt="갤러리 사진 3">
+                </div>
+
+                <div class="gallery-slide">
+                    <img src="images/gallery4.jpg" alt="갤러리 사진 4">
+                </div>
+
+                <button class="gallery-arrow gallery-prev" type="button" aria-label="이전 사진">
+                    ‹
+                </button>
+
+                <button class="gallery-arrow gallery-next" type="button" aria-label="다음 사진">
+                    ›
+                </button>
+
+                <div class="gallery-dots">
+                    <button class="gallery-dot active" type="button" aria-label="1번 사진"></button>
+                    <button class="gallery-dot" type="button" aria-label="2번 사진"></button>
+                    <button class="gallery-dot" type="button" aria-label="3번 사진"></button>
+                    <button class="gallery-dot" type="button" aria-label="4번 사진"></button>
+                </div>
+
             </div>
-
-            <div class="gallery-slide">
-                <img src="images/gallery2.jpg" alt="갤러리 사진 2">
-            </div>
-
-            <div class="gallery-slide">
-                <img src="images/gallery3.jpg" alt="갤러리 사진 3">
-            </div>
-
-            <div class="gallery-slide">
-                <img src="images/gallery4.jpg" alt="갤러리 사진 4">
-            </div>
-
-            <div class="gallery-dim"></div>
-
-            <button class="gallery-arrow gallery-prev" type="button" aria-label="이전 사진">
-                ‹
-            </button>
-
-            <button class="gallery-arrow gallery-next" type="button" aria-label="다음 사진">
-                ›
-            </button>
-
-            <div class="gallery-dots">
-                <button class="gallery-dot active" type="button" aria-label="1번 사진"></button>
-                <button class="gallery-dot" type="button" aria-label="2번 사진"></button>
-                <button class="gallery-dot" type="button" aria-label="3번 사진"></button>
-                <button class="gallery-dot" type="button" aria-label="4번 사진"></button>
-            </div>
-
         </div>
     </section>
 
     <!-- 4. 오시는 길 -->
     <section class="page-section location-section section-line">
-        <div class="section-title white-title">Location</div>
+        <div class="section-title">Location</div>
 
-        <div class="location-bg"></div>
-        <div class="dark-overlay stronger"></div>
-
-        <div class="location-content">
+        <div class="section-panel location-content">
             <h2>오시는 길</h2>
 
             <p class="location-address">
@@ -109,9 +109,9 @@
 
     <!-- 5. 계좌 -->
     <section class="page-section account-section section-line">
-        <div class="section-title dark-title">Account</div>
+        <div class="section-title">Account</div>
 
-        <div class="account-content">
+        <div class="section-panel account-content">
             <h2>마음 전하실 곳</h2>
 
             <p class="account-desc">
@@ -161,7 +161,7 @@
 
 </main>
 
-<!-- 카카오 지도 API를 쓸 경우 아래 appkey만 실제 키로 교체하세요. -->
+<!-- 카카오 지도 API 사용 시 appkey 입력 -->
 <!-- <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=여기에_카카오_API_KEY"></script> -->
 
 <script src="js/script.js"></script>
