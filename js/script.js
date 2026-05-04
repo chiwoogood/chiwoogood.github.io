@@ -1,15 +1,50 @@
 document.addEventListener("DOMContentLoaded", function () {
     initGallerySlider();
     initAccordion();
+    initSectionFadeTransition();
     initKakaoMap();
 });
 
 /* =========================
+   섹션 이동 자연스러운 전환
+   - 스크롤로 다음 섹션에 진입하면
+   - 이전 섹션은 흐려지고
+   - 현재 섹션은 부드럽게 선명해짐
+========================= */
+function initSectionFadeTransition() {
+    const sections = document.querySelectorAll(".page-section");
+
+    if (!sections.length) {
+        return;
+    }
+
+    sections.forEach(function (section, index) {
+        section.classList.add("section-fade");
+
+        if (index === 0) {
+            section.classList.add("section-visible");
+        }
+    });
+
+    const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("section-visible");
+            } else {
+                entry.target.classList.remove("section-visible");
+            }
+        });
+    }, {
+        threshold: 0.45
+    });
+
+    sections.forEach(function (section) {
+        observer.observe(section);
+    });
+}
+
+/* =========================
    갤러리 슬라이드
-   - 3초 간격 자동 전환
-   - 흐려지면서 자연스럽게 전환
-   - 하단 흰색 화살표 수동 이동
-   - 하단 점 버튼 이동
 ========================= */
 function initGallerySlider() {
     const slides = document.querySelectorAll(".gallery-slide");
@@ -137,7 +172,6 @@ function initAccordion() {
 
 /* =========================
    카카오 지도
-   - index.html에서 카카오 SDK 주석 해제 후 appkey 입력 필요
 ========================= */
 function initKakaoMap() {
     const mapContainer = document.getElementById("map");
