@@ -3,7 +3,7 @@
 }
 
 :root {
-    --bg-color: #fff4f7;
+    --bg-color: #ffffff;
     --text-color: #6a5450;
     --line-color: rgba(214, 170, 182, 0.32);
     --point-color: #d9a7b4;
@@ -13,13 +13,12 @@ html {
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
-    scroll-snap-type: y proximity;
 }
 
 body {
     margin: 0;
     padding: 0;
-    background: var(--bg-color);
+    background: #ffffff;
     font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
     color: var(--text-color);
 }
@@ -28,7 +27,7 @@ body {
     width: 100%;
     max-width: 430px;
     margin: 0 auto;
-    background: var(--bg-color);
+    background: #ffffff;
     overflow-x: hidden;
 }
 
@@ -39,20 +38,18 @@ body {
     position: relative;
     width: 100%;
     min-height: 100svh;
-    background: var(--bg-color);
+    background: #ffffff;
     color: var(--text-color);
     overflow: visible;
-    scroll-snap-align: start;
-    scroll-snap-stop: normal;
 }
 
-/* 모든 섹션 배경 / 글씨색 완전 통일 */
+/* 모든 섹션 배경 / 글씨색 통일 */
 .main-section,
 .intro-section,
 .gallery-section,
 .location-section,
 .account-section {
-    background: var(--bg-color);
+    background: #ffffff;
     color: var(--text-color);
 }
 
@@ -68,7 +65,7 @@ body {
     z-index: 20;
 }
 
-/* 모든 섹션 부제목 동일 */
+/* 섹션 제목 */
 .section-title {
     position: absolute;
     top: 22px;
@@ -82,7 +79,7 @@ body {
     text-shadow: none;
 }
 
-/* 모든 텍스트 색상 강제 통일 */
+/* 모든 텍스트 색상 통일 */
 h1,
 h2,
 p,
@@ -108,7 +105,21 @@ div,
     text-shadow: none;
 }
 
-/* 어두운 요소 / 카드 요소 전부 제거 */
+/* 카드 / 패널 / 그림자 제거 */
+.main-content,
+.intro-content,
+.location-content,
+.account-content,
+.gallery-slider,
+.accordion,
+.location-info {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+/* 어두운 요소 제거 */
 .dark-overlay,
 .dark-overlay.stronger,
 .gallery-dim,
@@ -120,17 +131,21 @@ div,
 }
 
 /* =========================
-   섹션 전환 효과
-   - 섹션 전체를 움직이지 않음
-   - 내용만 자연스럽게 나타남
+   섹션 이지인 효과
+   - 섹션 전체가 아니라 내부 내용만 적용
+   - 위치 구조 안 깨짐
 ========================= */
-.fade-in-target {
+.ease-target {
     opacity: 0;
-    transition: opacity 0.9s ease;
+    transform: translateY(18px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
 }
 
-.fade-in-target.visible {
+.ease-target.ease-visible {
     opacity: 1;
+    transform: translateY(0);
 }
 
 /* =========================
@@ -158,9 +173,6 @@ div,
     width: 100%;
     padding: 28px 0 0;
     text-align: center;
-    background: transparent;
-    border: none;
-    box-shadow: none;
 }
 
 .main-label {
@@ -201,9 +213,6 @@ div,
 .intro-content {
     width: 100%;
     text-align: center;
-    background: transparent;
-    border: none;
-    box-shadow: none;
 }
 
 .intro-content h2 {
@@ -235,10 +244,6 @@ div,
     height: 72svh;
     max-height: 620px;
     overflow: hidden;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    border-radius: 0;
 }
 
 .gallery-slide {
@@ -279,7 +284,7 @@ div,
     height: 48px;
     border: 1px solid rgba(106, 84, 80, 0.32);
     border-radius: 50%;
-    background: rgba(255, 244, 247, 0.72);
+    background: rgba(255, 255, 255, 0.72);
     color: var(--text-color);
     font-size: 38px;
     font-weight: 200;
@@ -294,7 +299,7 @@ div,
 
 .gallery-arrow:active {
     transform: scale(0.94);
-    background: rgba(255, 244, 247, 0.92);
+    background: rgba(255, 255, 255, 0.92);
 }
 
 .gallery-prev {
@@ -346,9 +351,6 @@ div,
 .location-content {
     width: 100%;
     text-align: center;
-    background: transparent;
-    border: none;
-    box-shadow: none;
 }
 
 .location-content h2 {
@@ -368,7 +370,7 @@ div,
     width: 100%;
     height: 280px;
     border-radius: 0;
-    background: rgba(255, 255, 255, 0.5);
+    background: #ffffff;
     color: var(--text-color);
     display: flex;
     align-items: center;
@@ -376,14 +378,12 @@ div,
     font-size: 14px;
     overflow: hidden;
     box-shadow: none;
+    border: 1px solid var(--line-color);
 }
 
 .location-info {
     margin-top: 20px;
     padding: 0;
-    border-radius: 0;
-    background: transparent;
-    border: none;
     text-align: left;
 }
 
@@ -412,9 +412,6 @@ div,
 .account-content {
     width: 100%;
     text-align: center;
-    background: transparent;
-    border: none;
-    box-shadow: none;
 }
 
 .account-content h2 {
