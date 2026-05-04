@@ -3,14 +3,13 @@
 }
 
 :root {
-    --section-bg: #fff4f7;
-    --card-bg: rgba(255, 255, 255, 0.78);
-    --text-main: #6a5450;
-    --text-sub: #8f7772;
+    --bg-color: #fff4f7;
+    --text-color: #6a5450;
+    --panel-color: rgba(255, 255, 255, 0.78);
+    --border-color: rgba(255, 255, 255, 0.95);
     --line-color: rgba(214, 170, 182, 0.32);
-    --border-color: rgba(255, 255, 255, 0.92);
-    --point: #d9a7b4;
-    --shadow: rgba(214, 150, 168, 0.16);
+    --shadow-color: rgba(214, 150, 168, 0.14);
+    --point-color: #d9a7b4;
 }
 
 html {
@@ -23,39 +22,43 @@ html {
 body {
     margin: 0;
     padding: 0;
-    background: var(--section-bg);
+    background: var(--bg-color);
     font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-    color: var(--text-main);
+    color: var(--text-color);
 }
 
 .mobile-wrap {
     width: 100%;
     max-width: 430px;
     margin: 0 auto;
-    background: var(--section-bg);
+    background: var(--bg-color);
     overflow-x: hidden;
 }
 
+/* =========================
+   전체 섹션 공통
+========================= */
 .page-section {
     position: relative;
     width: 100%;
     min-height: 100svh;
+    height: auto;
+    padding: 86px 22px 72px;
+    background: var(--bg-color);
+    color: var(--text-color);
     overflow: visible;
     scroll-snap-align: start;
     scroll-snap-stop: normal;
-    background: var(--section-bg);
 }
 
-/* 모든 섹션 동일 배경 */
+/* 모든 섹션 배경 완전 동일 */
 .main-section,
 .intro-section,
 .gallery-section,
 .location-section,
 .account-section {
-    background: var(--section-bg);
-    min-height: 100svh;
-    height: auto;
-    overflow: visible;
+    background: var(--bg-color);
+    color: var(--text-color);
 }
 
 /* 얇은 구분선 */
@@ -70,10 +73,8 @@ body {
     z-index: 20;
 }
 
-/* 우측 상단 부제목 - 모든 섹션 동일 색상 */
-.section-title,
-.white-title,
-.dark-title {
+/* 모든 섹션 부제목 완전 동일 */
+.section-title {
     position: absolute;
     top: 22px;
     right: 18px;
@@ -82,16 +83,58 @@ body {
     font-weight: 500;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--text-sub);
+    color: var(--text-color);
     text-shadow: none;
 }
 
-/* 어두운 오버레이 완전 제거 */
+/* 모든 카드 패널 공통 */
+.section-panel {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    background: var(--panel-color);
+    border: 1px solid var(--border-color);
+    border-radius: 28px;
+    box-shadow: 0 16px 42px var(--shadow-color);
+    color: var(--text-color);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* 어두운 요소 완전 제거 */
 .dark-overlay,
 .dark-overlay.stronger,
 .gallery-dim,
-.location-bg {
+.location-bg,
+.white-title,
+.dark-title {
     display: none;
+}
+
+/* 모든 텍스트 색상 강제 통일 */
+h1,
+h2,
+p,
+span,
+strong,
+em,
+button,
+div,
+.section-title,
+.main-content,
+.main-label,
+.main-date,
+.main-place,
+.intro-content,
+.location-content,
+.location-address,
+.location-info,
+.account-content,
+.account-desc,
+.account-row,
+.accordion-button {
+    color: var(--text-color);
+    text-shadow: none;
 }
 
 /* =========================
@@ -99,47 +142,33 @@ body {
 ========================= */
 .main-section {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 78px 22px 72px;
 }
 
-/* 메인 사진도 배경으로 깔지 않고 밝은 카드 안에 배치 */
-.section-bg {
-    position: relative;
-    inset: auto;
+.main-panel {
+    padding: 0;
+    overflow: hidden;
+}
+
+.main-photo {
     display: block;
     width: 100%;
-    height: 62svh;
+    height: 58svh;
     max-height: 560px;
     object-fit: cover;
-    border-radius: 28px;
-    box-shadow: 0 18px 46px var(--shadow);
 }
 
 .main-content {
-    position: relative;
-    z-index: 5;
     width: 100%;
-    margin-top: 18px;
-    padding: 22px 18px;
+    padding: 24px 18px 26px;
     text-align: center;
-    color: var(--text-main);
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 24px;
-    box-shadow: 0 16px 42px var(--shadow);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    text-shadow: none;
 }
 
 .main-label {
     margin: 0 0 16px;
     font-size: 12px;
     letter-spacing: 0.28em;
-    color: var(--text-sub);
     text-transform: uppercase;
 }
 
@@ -148,20 +177,17 @@ body {
     font-size: 38px;
     font-weight: 300;
     letter-spacing: 0.08em;
-    color: var(--text-main);
 }
 
 .main-date {
     margin: 18px 0 6px;
     font-size: 15px;
     letter-spacing: 0.15em;
-    color: var(--text-sub);
 }
 
 .main-place {
     margin: 0;
     font-size: 14px;
-    color: var(--text-sub);
 }
 
 /* =========================
@@ -171,21 +197,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 86px 0;
 }
 
 .intro-content {
-    position: relative;
-    z-index: 5;
-    width: calc(100% - 44px);
     padding: 44px 26px;
     text-align: center;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 28px;
-    box-shadow: 0 16px 42px var(--shadow);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
 }
 
 .intro-content h2 {
@@ -193,14 +209,12 @@ body {
     font-size: 25px;
     font-weight: 400;
     line-height: 1.45;
-    color: var(--text-main);
 }
 
 .intro-content p {
     margin: 0;
     font-size: 16px;
     line-height: 2.15;
-    color: var(--text-sub);
 }
 
 /* =========================
@@ -210,21 +224,19 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 78px 22px 72px;
 }
 
-/* 갤러리도 전체 배경으로 깔지 않고 카드 안에서 슬라이드 */
+.gallery-panel {
+    padding: 0;
+    overflow: hidden;
+}
+
 .gallery-slider {
     position: relative;
-    inset: auto;
     width: 100%;
     height: 72svh;
     max-height: 620px;
-    border-radius: 28px;
     overflow: hidden;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    box-shadow: 0 18px 46px var(--shadow);
 }
 
 .gallery-slide {
@@ -256,7 +268,6 @@ body {
     object-fit: cover;
 }
 
-/* 하단 화살표 */
 .gallery-arrow {
     position: absolute;
     bottom: 48px;
@@ -265,24 +276,22 @@ body {
     height: 48px;
     border: 1px solid var(--border-color);
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.78);
-    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.82);
+    color: var(--text-color);
     font-size: 38px;
     font-weight: 200;
     line-height: 38px;
     cursor: pointer;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 12px 30px var(--shadow);
+    box-shadow: 0 12px 30px var(--shadow-color);
     text-shadow: none;
 }
 
 .gallery-arrow:active {
     transform: scale(0.94);
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.95);
 }
 
 .gallery-prev {
@@ -310,14 +319,14 @@ body {
     padding: 0;
     border: none;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.72);
-    box-shadow: 0 4px 12px var(--shadow);
+    background: rgba(255, 255, 255, 0.76);
+    box-shadow: 0 4px 12px var(--shadow-color);
 }
 
 .gallery-dot.active {
     width: 18px;
     border-radius: 999px;
-    background: var(--point);
+    background: var(--point-color);
 }
 
 /* =========================
@@ -327,22 +336,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 86px 0 72px;
 }
 
 .location-content {
-    position: relative;
-    z-index: 6;
-    width: calc(100% - 44px);
     padding: 34px 22px;
-    color: var(--text-main);
     text-align: center;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 28px;
-    box-shadow: 0 16px 42px var(--shadow);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
 }
 
 .location-content h2 {
@@ -350,14 +348,12 @@ body {
     font-size: 29px;
     font-weight: 400;
     letter-spacing: 0.02em;
-    color: var(--text-main);
 }
 
 .location-address {
     margin: 0 0 22px;
     font-size: 14px;
     line-height: 1.75;
-    color: var(--text-sub);
 }
 
 #map {
@@ -365,18 +361,18 @@ body {
     height: 280px;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.96);
-    color: var(--text-sub);
+    color: var(--text-color);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 14px;
     overflow: hidden;
-    box-shadow: 0 12px 30px var(--shadow);
+    box-shadow: 0 12px 30px var(--shadow-color);
 }
 
 .location-info {
     margin-top: 20px;
-    padding: 18px 18px;
+    padding: 18px;
     border-radius: 18px;
     background: rgba(255, 255, 255, 0.72);
     border: 1px solid var(--border-color);
@@ -387,13 +383,11 @@ body {
     margin: 6px 0;
     font-size: 13px;
     line-height: 1.7;
-    color: var(--text-sub);
 }
 
 .location-info strong {
     display: inline-block;
     min-width: 52px;
-    color: var(--text-main);
     font-weight: 600;
 }
 
@@ -404,35 +398,23 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 86px 0 72px;
 }
 
 .account-content {
-    position: relative;
-    z-index: 5;
-    width: calc(100% - 44px);
     padding: 34px 22px;
     text-align: center;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 28px;
-    box-shadow: 0 16px 42px var(--shadow);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
 }
 
 .account-content h2 {
     margin: 0 0 12px;
     font-size: 28px;
     font-weight: 400;
-    color: var(--text-main);
 }
 
 .account-desc {
     margin: 0 0 30px;
     font-size: 14px;
     line-height: 1.8;
-    color: var(--text-sub);
 }
 
 .accordion {
@@ -441,15 +423,14 @@ body {
     overflow: hidden;
     background: rgba(255, 255, 255, 0.78);
     border: 1px solid var(--border-color);
-    box-shadow: 0 12px 30px var(--shadow);
+    box-shadow: 0 12px 30px var(--shadow-color);
 }
 
 .accordion-button {
     width: 100%;
-    padding: 20px 20px;
+    padding: 20px;
     border: none;
     background: transparent;
-    color: var(--text-main);
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
@@ -462,7 +443,6 @@ body {
     font-style: normal;
     font-size: 25px;
     font-weight: 200;
-    color: var(--text-sub);
     transition: transform 0.25s ease;
 }
 
@@ -493,25 +473,24 @@ body {
 .account-row p {
     margin: 0 0 6px;
     font-size: 13px;
-    color: var(--text-sub);
 }
 
 .account-row strong {
     display: block;
     font-size: 15px;
     font-weight: 500;
-    color: var(--text-main);
 }
 
-/* 아주 작은 모바일 대응 */
+/* =========================
+   작은 모바일
+========================= */
 @media (max-width: 360px) {
-    .main-section {
-        padding: 72px 18px 64px;
+    .page-section {
+        padding: 76px 18px 64px;
     }
 
-    .section-bg {
-        height: 58svh;
-        border-radius: 24px;
+    .main-photo {
+        height: 56svh;
     }
 
     .main-content h1 {
@@ -526,14 +505,8 @@ body {
         font-size: 15px;
     }
 
-    .gallery-section {
-        padding-left: 18px;
-        padding-right: 18px;
-    }
-
     .gallery-slider {
         height: 70svh;
-        border-radius: 24px;
     }
 
     #map {
@@ -544,11 +517,5 @@ body {
         width: 44px;
         height: 44px;
         font-size: 34px;
-    }
-
-    .location-section,
-    .account-section {
-        padding-top: 76px;
-        padding-bottom: 60px;
     }
 }
